@@ -21,6 +21,7 @@ const Login = () => {
       const res = await loginUser({ email, password });
       localStorage.setItem('token', res.data.token);
       localStorage.setItem('userType', res.data.userType);
+      localStorage.setItem('user', JSON.stringify(res.data.user));
       alert('Login successful!');
       navigate('/dashboard');
 

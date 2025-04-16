@@ -9,7 +9,7 @@ exports.addRoom = async (req, res) => {
       roomType,
       price,
       features: features ? features.split(',') : [],
-      available,
+      available: available === 'true' || available === true,
       image: req.file ? req.file.path : undefined,
     });
 

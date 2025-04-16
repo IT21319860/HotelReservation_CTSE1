@@ -5,6 +5,7 @@ const connectDB = require('./dbConfig/db');
 const authRoutes = require('./routes/authRoutes');
 const roomRoutes = require('./routes/roomRoutes');
 const path = require('path');
+const reservationRoutes = require('./routes/reservationRoutes');
 
 dotenv.config();
 connectDB();
@@ -16,6 +17,7 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads'))); // serve i
 
 app.use('/api/auth', authRoutes);
 app.use('/api', roomRoutes);
+app.use('/api/reservations', reservationRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

@@ -55,13 +55,18 @@ exports.loginUser = async (req, res) => {
     if (!user || !(await user.matchPassword(password))) {
       return res.status(401).json({ message: 'Invalid email or password' });
     }
+    const token = generateToken(user._id, user.userType);
 
     res.status(200).json({
-      _id: user._id,
-      name: user.name,
-      email: user.email,
+      token,
       userType: user.userType,
-      token: generateToken(user._id, user.userType),
+      user: {
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        mobile: user.mobile,
+        nic: user.nic,
+      }
     });
 
   } catch (error) {
