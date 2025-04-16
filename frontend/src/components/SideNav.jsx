@@ -2,7 +2,7 @@ import React from 'react';
 import {
   Drawer, List, ListItem, ListItemIcon, ListItemText, Box, Divider,
 } from '@mui/material';
-import { Dashboard, Hotel, CalendarMonth, People, Logout } from '@mui/icons-material';
+import { Dashboard, Hotel, CalendarMonth, People, Logout, Book } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 
 const SideNav = () => {
@@ -12,12 +12,14 @@ const SideNav = () => {
     { text: 'Dashboard', icon: <Dashboard />, path: '/dashboard' },
     { text: 'Room Inventory', icon: <Hotel />, path: '/inventory' },
     { text: 'Room Reservations', icon: <CalendarMonth />, path: '/reservations' },
+    { text: 'Reserved Rooms', icon: <Book />, path: '/reserved-rooms' },
     { text: 'User Management', icon: <People />, path: '/users' },
   ];
 
   const handleLogout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('userType');
+    localStorage.removeItem('user'); 
     navigate('/');
   };
 

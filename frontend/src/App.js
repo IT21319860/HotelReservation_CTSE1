@@ -33,6 +33,7 @@ import RoomInventory from './pages/RoomInventory';
 import Reservations from './pages/Reservations';
 import Users from './pages/UserManagement';
 import Layout from './components/Layout';
+import ReservedRooms from './pages/ReservedRooms';
 
 function App() {
   return (
@@ -54,6 +55,10 @@ function App() {
         <Route
           path="/reservations"
           element={<Layout><Reservations /></Layout>}
+        />
+        <Route 
+          path="/reserved-rooms" 
+          element={<Layout><ReservedRooms /></Layout>} 
         />
         <Route
           path="/users"
