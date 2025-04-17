@@ -40,7 +40,7 @@ exports.protect = async (req, res, next) => {
 // };
 
 exports.isAdmin = (req, res, next) => {
-  if (req.user && req.user.userType === 'admin') {
+  if (req.user && req.user.userType === 'admin' || req.user.userType === 'manager') {
     next();
   } else {
     res.status(403).json({ message: 'Admin access required' });

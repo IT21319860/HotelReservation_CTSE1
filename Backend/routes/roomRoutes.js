@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const multer = require('multer');
 const path = require('path');
-const { protect } = require('../middleware/authMiddeleware');
+const { protect, isAdmin } = require('../middleware/authMiddeleware');
 const {
   addRoom,
   getRooms,
@@ -22,10 +22,10 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage });
 
-router.post('/rooms', protect, upload.single('image'), addRoom);
+router.post('/rooms', protect, isAdmin, upload.single('image'), addRoom);
 router.get('/rooms', getRooms);
 router.get('/rooms/:id', getRoomById);
-router.put('/rooms/:id', protect, updateRoom);
-router.delete('/rooms/:id', protect, deleteRoom);
+router.put('/rooms/:id', protect, isAdmin, updateRoom);
+router.delete('/rooms/:id', protect, isAdmin, deleteRoom);
 
 module.exports = router;

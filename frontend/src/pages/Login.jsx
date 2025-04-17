@@ -31,50 +31,60 @@ const Login = () => {
   };
 
   return (
-    <Container maxWidth="sm">
-      <Paper elevation={3} sx={{ padding: 4, mt: 10, borderRadius: 3 }}>
-        <Typography variant="h5" align="center" gutterBottom>
-          Login
-        </Typography>
-
-        <Box component="form" onSubmit={handleLogin} sx={{ mt: 2 }}>
-          <TextField
-            fullWidth
-            label="Email"
-            variant="outlined"
-            margin="normal"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-
-          <TextField
-            fullWidth
-            label="Password"
-            type="password"
-            variant="outlined"
-            margin="normal"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            fullWidth
-            sx={{ mt: 2, py: 1.2 }}
-          >
+    <Box
+      sx={{
+        minHeight: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundImage: 'linear-gradient(to right, #e0f7fa, #e0f2f1)',
+      }}
+    >
+      <Container maxWidth="sm">
+        <Paper elevation={3} sx={{ padding: 4, borderRadius: 3 }}>
+          <Typography variant="h5" align="center" gutterBottom>
             Login
-          </Button>
-
-          <Typography align="center" sx={{ mt: 2 }}>
-            Don't have an account? <Link to="/register">Register here</Link>
           </Typography>
-        </Box>
-      </Paper>
-    </Container>
+
+          <Box component="form" onSubmit={handleLogin} sx={{ mt: 2 }}>
+            <TextField
+              fullWidth
+              label="Email"
+              variant="outlined"
+              margin="normal"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+
+            <TextField
+              fullWidth
+              label="Password"
+              type="password"
+              variant="outlined"
+              margin="normal"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              fullWidth
+              sx={{ mt: 2, py: 1.2 }}
+            >
+              Login
+            </Button>
+
+            <Typography align="center" sx={{ mt: 2 }}>
+              Don't have an account? <Link to="/register">Register here</Link>
+            </Typography>
+          </Box>
+        </Paper>
+      </Container>
+    </Box>
   );
 };
 
