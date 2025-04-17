@@ -79,7 +79,7 @@ const Reservations = () => {
   };
 
   return (
-    <Container sx={{ mt: 4 }}>
+    <Container>
       <Typography variant="h4" gutterBottom>Book a Room</Typography>
 
       <Grid container spacing={3}>

@@ -6,7 +6,7 @@ const Layout = ({ children }) => {
   return (
     <Box sx={{ display: 'flex' }}>
       <SideNav />
-      <Box component="main" sx={{ flexGrow: 1, p: 3, ml: '240px' }}>
+      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         {children}
       </Box>
     </Box>

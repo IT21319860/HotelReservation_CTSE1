@@ -17,7 +17,7 @@
 // export default RoomInventory;
 import React, { useState, useEffect } from 'react';
 import {
-  Container, Typography, Button, Grid, Card, CardContent, CardMedia,
+  Container, Typography, Box,Button, Grid, Card, CardContent, CardMedia,
   Dialog, DialogTitle, DialogContent, DialogActions, TextField, Switch, FormControlLabel
 } from '@mui/material';
 import axios from 'axios';
@@ -123,7 +123,7 @@ const RoomInventory = () => {
   };
 
   return (
-    <Container sx={{ mt: 4 }}>
+    <Container>
       <Typography variant="h4" gutterBottom>Room Inventory</Typography>
 
       <Button variant="contained" onClick={handleOpen} sx={{ mb: 3 }}>
@@ -132,27 +132,34 @@ const RoomInventory = () => {
 
       <Grid container spacing={3}>
         {rooms.map((room) => (
-          <Grid item xs={12} md={4} key={room._id}>
-            <Card>
-              {room.image && (
-                <CardMedia
-                  component="img"
-                  height="160"
-                  image={`http://localhost:5000/${room.image}`}
-                  alt={room.roomType}
-                />
-              )}
-              <CardContent>
-                <Typography variant="h6">{room.roomType}</Typography>
-                <Typography variant="body2">Price: ${room.price}</Typography>
-                <Typography variant="body2">Features: {room.features.join(', ')}</Typography>
-                <Typography variant="body2">Available: {room.available ? 'Yes' : 'No'}</Typography>
-
-                <Button size="small" variant="outlined" color="primary" onClick={() => handleEdit(room)} sx={{ mt: 1, mr: 1 }}>Edit</Button>
-                <Button size="small" variant="outlined" color="error" onClick={() => handleDelete(room._id)} sx={{ mt: 1 }}>Delete</Button>
-              </CardContent>
-            </Card>
-          </Grid>
+          <Grid item xs={12} md={6} lg={4} key={room._id}>
+          <Card sx={{ minHeight: 320 }}>
+            {room.image && (
+              <CardMedia
+                component="img"
+                height="200"
+                image={`http://localhost:5000/${room.image}`}
+                alt={room.roomType}
+              />
+            )}
+            <CardContent>
+              <Typography variant="h5" sx={{ fontWeight: 600 }}>{room.roomType}</Typography>
+              <Typography variant="body1" sx={{ mt: 1 }}>Price: ${room.price}</Typography>
+              <Typography variant="body1">Features: {room.features.join(', ')}</Typography>
+              <Typography variant="body1">Available: {room.available ? 'Yes' : 'No'}</Typography>
+        
+              <Box sx={{ mt: 2 }}>
+                <Button size="small" variant="outlined" color="primary" onClick={() => handleEdit(room)} sx={{ mr: 1 }}>
+                  Edit
+                </Button>
+                <Button size="small" variant="outlined" color="error" onClick={() => handleDelete(room._id)}>
+                  Delete
+                </Button>
+              </Box>
+            </CardContent>
+          </Card>
+        </Grid>
+        
         ))}
       </Grid>
 

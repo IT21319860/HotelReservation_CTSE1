@@ -1,12 +1,19 @@
 import React from 'react';
 import {
-  Drawer, List, ListItem, ListItemIcon, ListItemText, Box, Divider,
+  Drawer, List, ListItem, ListItemIcon, ListItemText,
+  Box, Divider, useTheme
 } from '@mui/material';
-import { Dashboard, Hotel, CalendarMonth, People, Logout, Book } from '@mui/icons-material';
-import { useNavigate } from 'react-router-dom';
+import {
+  Dashboard, Hotel, CalendarMonth, People, Logout, Book
+} from '@mui/icons-material';
+import { useNavigate, useLocation } from 'react-router-dom';
+
+const drawerWidth = 240;
 
 const SideNav = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const theme = useTheme();
 
   const menu = [
     { text: 'Dashboard', icon: <Dashboard />, path: '/dashboard' },
@@ -19,29 +26,58 @@ const SideNav = () => {
   const handleLogout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('userType');
-    localStorage.removeItem('user'); 
+    localStorage.removeItem('user');
     navigate('/');
   };
 
   return (
-    <Drawer variant="permanent" sx={{ width: 240, display: 'flex', flexDirection: 'column' }}>
+    <Drawer
+      variant="permanent"
+      sx={{
+        width: drawerWidth,
+        flexShrink: 0,
+        '& .MuiDrawer-paper': {
+          width: drawerWidth,
+          boxSizing: 'border-box',
+          backgroundColor: '#1E293B', // dark slate color
+          color: 'white',
+        },
+      }}
+    >
       <Box sx={{ flexGrow: 1 }}>
         <List>
-          {menu.map((item) => (
-            <ListItem button key={item.text} onClick={() => navigate(item.path)}>
-              <ListItemIcon>{item.icon}</ListItemIcon>
-              <ListItemText primary={item.text} />
-            </ListItem>
-          ))}
+          {menu.map((item) => {
+            const isActive = location.pathname === item.path;
+            return (
+              <ListItem
+                button
+                key={item.text}
+                onClick={() => navigate(item.path)}
+                sx={{
+                  backgroundColor: isActive ? '#334155' : 'inherit',
+                  '&:hover': { backgroundColor: '#475569' },
+                }}
+              >
+                <ListItemIcon sx={{ color: 'white' }}>{item.icon}</ListItemIcon>
+                <ListItemText primary={item.text} />
+              </ListItem>
+            );
+          })}
         </List>
       </Box>
 
-      <Divider />
+      <Divider sx={{ backgroundColor: '#64748B' }} />
 
       <Box>
         <List>
-          <ListItem button onClick={handleLogout}>
-            <ListItemIcon><Logout /></ListItemIcon>
+          <ListItem
+            button
+            onClick={handleLogout}
+            sx={{
+              '&:hover': { backgroundColor: '#EF4444' },
+            }}
+          >
+            <ListItemIcon sx={{ color: 'white' }}><Logout /></ListItemIcon>
             <ListItemText primary="Logout" />
           </ListItem>
         </List>

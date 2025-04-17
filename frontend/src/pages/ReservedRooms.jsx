@@ -59,7 +59,7 @@ const ReservedRooms = () => {
   };
 
   return (
-    <Container sx={{ mt: 4 }}>
+    <Container>
       <Typography variant="h4" gutterBottom>Your Reserved Rooms</Typography>
 
       <Grid container spacing={3}>
