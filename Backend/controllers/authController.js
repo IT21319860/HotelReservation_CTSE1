@@ -12,6 +12,7 @@ const generateToken = (id, userType) => {
 // @desc    Register new user
 exports.registerUser = async (req, res) => {
   const { name, email, password, mobile, nic, userType } = req.body;
+  console.log("Received data:", req.body); 
 
   try {
     // Check if email or NIC already exists
@@ -29,6 +30,8 @@ exports.registerUser = async (req, res) => {
       userType, // Optional — defaults to 'staff'
     });
 
+    console.log("New user created:", user);
+
     res.status(201).json({
       _id: user._id,
       name: user.name,
@@ -40,6 +43,7 @@ exports.registerUser = async (req, res) => {
     });
 
   } catch (error) {
+    console.error("Registration error:", error); 
     res.status(500).json({ message: 'Registration failed', error: error.message });
   }
 };
