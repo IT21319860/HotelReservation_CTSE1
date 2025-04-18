@@ -20,12 +20,12 @@ const Dashboard = () => {
     const fetchCounts = async () => {
       const token = localStorage.getItem('token');
       try {
-        const usersRes = await axios.get('http://localhost:5000/api/auth/users', {
+        const usersRes = await axios.get('https://hotel-backend-124923079078.asia-south1.run.app/api/auth/users', {
           headers: { Authorization: `Bearer ${token}` }
         });
         setUserCount(usersRes.data.length);
 
-        const roomsRes = await axios.get('http://localhost:5000/api/rooms');
+        const roomsRes = await axios.get('https://hotel-backend-124923079078.asia-south1.run.app/api/rooms');
         setRoomCount(roomsRes.data.length);
       } catch (err) {
         console.error('Failed to fetch counts:', err);

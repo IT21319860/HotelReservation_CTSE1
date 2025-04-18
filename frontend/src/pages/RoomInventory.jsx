@@ -34,7 +34,7 @@ const RoomInventory = () => {
 
   const fetchRooms = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/rooms');
+      const res = await axios.get('https://hotel-backend-124923079078.asia-south1.run.app/api/rooms');
       setRooms(res.data);
     } catch (err) {
       console.error(err);
@@ -83,7 +83,7 @@ const RoomInventory = () => {
     if (!window.confirm('Are you sure you want to delete this room?')) return;
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`http://localhost:5000/api/rooms/${id}`, {
+      await axios.delete(`https://hotel-backend-124923079078.asia-south1.run.app/api/rooms/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       fetchRooms();
@@ -96,7 +96,7 @@ const RoomInventory = () => {
     try {
       const token = localStorage.getItem('token');
       if (editMode) {
-        await axios.put(`http://localhost:5000/api/rooms/${editingRoomId}`, roomData, {
+        await axios.put(`https://hotel-backend-124923079078.asia-south1.run.app/api/rooms/${editingRoomId}`, roomData, {
           headers: { Authorization: `Bearer ${token}` },
         });
       } else {
@@ -107,7 +107,7 @@ const RoomInventory = () => {
         formData.append('available', roomData.available);
         if (image) formData.append('image', image);
 
-        await axios.post('http://localhost:5000/api/rooms', formData, {
+        await axios.post('https://hotel-backend-124923079078.asia-south1.run.app/api/rooms', formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
             Authorization: `Bearer ${token}`,
@@ -138,7 +138,7 @@ const RoomInventory = () => {
               <CardMedia
                 component="img"
                 height="200"
-                image={`http://localhost:5000/${room.image}`}
+                image={`https://hotel-backend-124923079078.asia-south1.run.app/${room.image}`}
                 alt={room.roomType}
               />
             )}

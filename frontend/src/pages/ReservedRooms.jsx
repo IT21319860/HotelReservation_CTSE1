@@ -17,7 +17,7 @@ const ReservedRooms = () => {
       const user = JSON.parse(localStorage.getItem('user'));
       if (!user || !user._id) return;
 
-      const res = await axios.get(`http://localhost:5000/api/reservations/user/${user._id}`);
+      const res = await axios.get(`https://hotel-backend-124923079078.asia-south1.run.app/api/reservations/user/${user._id}`);
       setReservations(res.data);
     } catch (err) {
       console.error('Error fetching reservations:', err);
@@ -31,7 +31,7 @@ const ReservedRooms = () => {
   const handleCancel = async (id) => {
     if (!window.confirm("Are you sure you want to cancel this reservation?")) return;
     try {
-      await axios.delete(`http://localhost:5000/api/reservations/${id}`);
+      await axios.delete(`https://hotel-backend-124923079078.asia-south1.run.app/api/reservations/${id}`);
       fetchReservations();
     } catch (err) {
       alert('Failed to cancel reservation');
@@ -47,7 +47,7 @@ const ReservedRooms = () => {
 
   const handleUpdate = async () => {
     try {
-      await axios.put(`http://localhost:5000/api/reservations/${editingReservation._id}`, {
+      await axios.put(`https://hotel-backend-124923079078.asia-south1.run.app/api/reservations/${editingReservation._id}`, {
         checkIn,
         checkOut
       });
@@ -70,7 +70,7 @@ const ReservedRooms = () => {
                 <CardMedia
                   component="img"
                   height="160"
-                  image={`http://localhost:5000/${res.roomId.image}`}
+                  image={`https://hotel-backend-124923079078.asia-south1.run.app/${res.roomId.image}`}
                   alt={res.roomId.roomType}
                 />
               )}

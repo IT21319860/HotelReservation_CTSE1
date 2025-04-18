@@ -16,7 +16,7 @@ const UserManagement = () => {
   const fetchUsers = async () => {
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.get('http://localhost:5000/api/auth/users', {
+      const res = await axios.get('https://hotel-backend-124923079078.asia-south1.run.app/api/auth/users', {
         headers: { Authorization: `Bearer ${token}` },
       });
       setUsers(res.data);
@@ -43,7 +43,7 @@ const UserManagement = () => {
     if (!window.confirm('Are you sure you want to delete this user?')) return;
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`http://localhost:5000/api/auth/users/${id}`, {
+      await axios.delete(`https://hotel-backend-124923079078.asia-south1.run.app/api/auth/users/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       fetchUsers();
@@ -55,7 +55,7 @@ const UserManagement = () => {
   const handleEditSubmit = async () => {
     try {
       const token = localStorage.getItem('token');
-      await axios.put(`http://localhost:5000/api/auth/users/${selectedUser._id}`, selectedUser, {
+      await axios.put(`https://hotel-backend-124923079078.asia-south1.run.app/api/auth/users/${selectedUser._id}`, selectedUser, {
         headers: { Authorization: `Bearer ${token}` },
       });
       handleEditClose();

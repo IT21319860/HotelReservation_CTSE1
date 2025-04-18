@@ -26,7 +26,7 @@ const Reservations = () => {
   useEffect(() => {
     const fetchRooms = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/rooms');
+        const res = await axios.get('https://hotel-backend-124923079078.asia-south1.run.app/api/rooms');
         const availableRooms = res.data.filter(room => room.available === true || room.available === 'true');
         setRooms(availableRooms);
       } catch (err) {
@@ -65,7 +65,7 @@ const Reservations = () => {
     });
 
     try {
-      await axios.post('http://localhost:5000/api/reservations', {
+      await axios.post('https://hotel-backend-124923079078.asia-south1.run.app/api/reservations', {
         userId,
         roomId: selectedRoom._id,
         checkIn,
@@ -90,7 +90,7 @@ const Reservations = () => {
                 <CardMedia
                   component="img"
                   height="160"
-                  image={`http://localhost:5000/${room.image}`}
+                  image={`https://hotel-backend-124923079078.asia-south1.run.app/${room.image}`}
                   alt={room.roomType}
                 />
               )}
